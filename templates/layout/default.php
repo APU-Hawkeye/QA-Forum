@@ -11,47 +11,53 @@
  * @link          https://cakephp.org CakePHP(tm) Project
  * @since         0.10.0
  * @license       https://opensource.org/licenses/mit-license.php MIT License
- * @var \App\View\AppView $this
+ * @var string $titleForLayout
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-        <?= $cakeDescription ?>:
-        <?= $this->fetch('title') ?>
+        <?php echo $titleForLayout; ?>
     </title>
-    <?= $this->Html->meta('icon') ?>
-
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
-
-    <?= $this->Html->css(['normalize.min', 'milligram.min', 'cake']) ?>
-
-    <?= $this->fetch('meta') ?>
-    <?= $this->fetch('css') ?>
-    <?= $this->fetch('script') ?>
+    <?php echo $this->Html->css([
+        'bootstrap.min',
+        'animate',
+        'sidebar-menu',
+        'app-style',
+        'icons',
+    ]); ?>
+    <style>
+        td {
+            font-size: 13px;
+        }
+    </style>
+    <?php echo $this->fetch('stylesheets'); ?>
 </head>
 <body>
     <nav class="top-nav">
         <div class="top-nav-title">
-            <a href="<?= $this->Url->build('/') ?>"><span>Cake</span>PHP</a>
+
         </div>
         <div class="top-nav-links">
-            <a target="_blank" rel="noopener" href="https://book.cakephp.org/4/">Documentation</a>
-            <a target="_blank" rel="noopener" href="https://api.cakephp.org/">API</a>
+
         </div>
     </nav>
     <main class="main">
         <div class="container">
-            <?= $this->Flash->render() ?>
             <?= $this->fetch('content') ?>
         </div>
     </main>
-    <footer>
-    </footer>
+    <?php echo $this->Html->script([
+        'jquery.min',
+        'popper.min',
+        'bootstrap.min',
+        'sidebar-menu',
+        'app-script',
+        'waves'
+    ]); ?>
+    <?php echo $this->fetch('js'); ?>
 </body>
 </html>
